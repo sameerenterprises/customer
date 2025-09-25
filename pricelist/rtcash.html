@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retail Cash Price List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f8f9fa;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .search-box input {
+      width: 300px;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse; /* makes borders clean */
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ccc;  /* 🔹 vertical + horizontal lines */
+    }
+
+    th {
+      background: #007bff;
+      color: #fff;
+    }
+
+    tr:hover {
+      background: #f1f1f1;
+    }
+
+    .no-results {
+      text-align: center;
+      margin-top: 15px;
+      font-style: italic;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <h2>Retail Cash Price List</h2>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for products...">
+  </div>
+
+  <table id="productTable">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price (₹)</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- Filled dynamically -->
+    </tbody>
+  </table>
+
+  <p id="noResults" class="no-results" style="display:none;">No products found</p>
+
+  <script>
+    // 📦 Product dictionary (array of arrays style)
+    const products = [
+      ["Gypblock Board 6'x4'x12.5mm", "1 Nos", 330],
+      ["Gyproc Board 6'x4'x12.5mm", "1 Nos", 430],
+      ["Xpert Gypsum Plaster", "20 Kg", 240],
+      ["Xpert Gypsum Plaster", "25 Kg", 290]
+    ];
+
+    const tableBody = document.getElementById("tableBody");
+    const searchInput = document.getElementById("searchInput");
+    const noResults = document.getElementById("noResults");
+
+    // Render table rows
+    function renderTable(filteredProducts) {
+      tableBody.innerHTML = "";
+      if (filteredProducts.length === 0) {
+        noResults.style.display = "block";
+        return;
+      }
+      noResults.style.display = "none";
+      filteredProducts.forEach(p => {
+        const row = `
+          <tr>
+            <td>${p[0]}</td>
+            <td>${p[1]}</td>
+            <td>${p[2]}</td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    // Initial render
+    renderTable(products);
+
+    // Search function
+    searchInput.addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      const filtered = products.filter(p =>
+        p[0].toLowerCase().includes(query)
+      );
+      renderTable(filtered);
+    });
+  </script>
+</body>
+</html>
