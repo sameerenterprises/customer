@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maitri Invoices</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top:20px; }
+        th, td { border:1px solid #000; padding:10px; }
+    </style>
+</head>
+<body>
+
+<h2>Maitri Invoices</h2>
+
+<table id="invoiceTable">
+    <tr>
+        <th>Invoice No</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Download</th>
+    </tr>
+</table>
+
+<script>
+fetch("invoices_user1.json")
+    .then(res => res.json())
+    .then(data => {
+        const table = document.getElementById("invoiceTable");
+
+        data.forEach(inv => {
+            let row = `
+                <tr>
+                    <td>${inv.no}</td>
+                    <td>${inv.date}</td>
+                    <td>₹${inv.amount}</td>
+                    <td><a href="pdf/${inv.file}" download>Download</a></td>
+                </tr>
+            `;
+            table.innerHTML += row;
+        });
+    });
+</script>
+
+</body>
+</html>
