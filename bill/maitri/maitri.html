@@ -32,7 +32,7 @@ fetch("maitri.json")
                     <td>${inv.no}</td>
                     <td>${inv.date}</td>
                     <td>₹${inv.amount}</td>
-                    <td><a href="pdf/${inv.file}" download>Download</a></td>
+                    <td><a href="${inv.file}" download>Download</a></td>
                 </tr>
             `;
             table.innerHTML += row;
