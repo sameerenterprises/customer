@@ -1,4 +1,5 @@
 [
-    { "no": "SE-002", "date": "2025-02-10", "amount": "12500", "file": "SE002.pdf" },
-    { "no": "SE-001", "date": "2025-02-15", "amount": "18300", "file": "SE001.pdf" }
+    { "date": "2025-02-10", "type": "Open", "no": "", "debit": "100000", "credit": "", "download": "" },
+    { "date": "2025-02-10", "type": "Sales", "no": "SE-002", "debit": "12500", "credit": "", "download": "SE002.pdf" },
+    { "date": "2025-02-13", "type": "Receipt", "no": "110", "debit": "", "credit": "100000", "download": "" }
 ]
