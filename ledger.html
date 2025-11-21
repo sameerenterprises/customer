@@ -69,33 +69,38 @@ const jsonPath = `bill/${userId}/${userId}.json`;
 fetch(jsonPath)
     .then(res => res.json())
     .then(data => {
-        const table = document.getElementById("invoiceTable");
 
+        // 🔄 Convert Tally fields → Your required fields
+        const convertedData = data.map(item => ({
+            date: item["Date"] || "",
+            type: item["Vch Type"] || item["Particulars"] || "",
+            no: item["Vch No."] || "",
+            debit: item["Debit"] || "",
+            credit: item["Credit"] || "",
+            download: "" // Tally does not give files
+        }));
+
+        const table = document.getElementById("invoiceTable");
         let balance = 0;
 
-        data.forEach(inv => {
+        convertedData.forEach(inv => {
             let debit = Number(inv.debit) || 0;
             let credit = Number(inv.credit) || 0;
 
-            // Running balance
             balance += debit - credit;
-
-            // File download path updated
-            let downloadBtn = inv.download 
-                ? `<a href="bill/${userId}/${inv.download}" download>Download</a>`
-                : "";
 
             let row = `
                 <tr>
                     <td>${inv.date}</td>
                     <td>${inv.type}</td>
-                    <td>${inv.no || ""}</td>
+                    <td>${inv.no}</td>
                     <td class="right">${debit ? "₹" + debit : ""}</td>
                     <td class="right">${credit ? "₹" + credit : ""}</td>
-                    <td class="right">₹${balance}</td>
-                    <td>${downloadBtn}</td>
+                    <td class="right">₹${balance.toFixed(2)}</td>
+                    <td></td>
                 </tr>
             `;
+
             table.innerHTML += row;
         });
 
@@ -103,7 +108,7 @@ fetch(jsonPath)
         table.innerHTML += `
             <tr>
                 <th colspan="5" class="right">Closing Balance</th>
-                <th class="right">₹${balance}</th>
+                <th class="right">₹${balance.toFixed(2)}</th>
                 <th></th>
             </tr>
         `;
