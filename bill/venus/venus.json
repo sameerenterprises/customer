@@ -1,6 +1,290 @@
 [
-    { "date": "2025-02-10", "type": "Open", "no": "", "debit": "5000", "credit": "", "download": "" },
-    { "date": "2025-02-10", "type": "Sales", "no": "SE-002", "debit": "75000", "credit": "", "download": "SE001.pdf" },
-    { "date": "2025-02-13", "type": "Receipt", "no": "110", "debit": "", "credit": "50000", "download": "" },
-  { "date": "2025-02-13", "type": "Receipt", "no": "110", "debit": "", "credit": "1000000", "download": "" }
+  {
+    "Date": "01-Apr-25",
+    "Particulars": "To",
+    "": "Opening Balance",
+    "Vch Type": "",
+    "Vch No.": "",
+    "Debit": "381785.40",
+    "Credit": ""
+  },
+  {
+    "Date": "02-Apr-25",
+    "Particulars": "By",
+    "": "HDFC Bank Ltd. 09982000000501",
+    "Vch Type": "Receipt",
+    "Vch No.": "5",
+    "Debit": "",
+    "Credit": "21410.00"
+  },
+  {
+    "Date": "09-Apr-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-087",
+    "Debit": "99049.00",
+    "Credit": ""
+  },
+  {
+    "Date": "18-Apr-25",
+    "Particulars": "By",
+    "": "HDFC Bank Ltd. 09982000000501",
+    "Vch Type": "Receipt",
+    "Vch No.": "112",
+    "Debit": "",
+    "Credit": "263031.00"
+  },
+  {
+    "Date": "02-May-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-312",
+    "Debit": "27966.00",
+    "Credit": ""
+  },
+  {
+    "Date": "26-May-25",
+    "Particulars": "By",
+    "": "HDFC Bank Ltd. 09982000000501",
+    "Vch Type": "Receipt",
+    "Vch No.": "351",
+    "Debit": "",
+    "Credit": "196389.00"
+  },
+  {
+    "Date": "27-May-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-559",
+    "Debit": "48781.00",
+    "Credit": ""
+  },
+  {
+    "Date": "09-Jun-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-679",
+    "Debit": "212.00",
+    "Credit": ""
+  },
+  {
+    "Date": "11-Jun-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-698",
+    "Debit": "6660.00",
+    "Credit": ""
+  },
+  {
+    "Date": "14-Jun-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-732",
+    "Debit": "2372.00",
+    "Credit": ""
+  },
+  {
+    "Date": "02-Jul-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-910",
+    "Debit": "920.00",
+    "Credit": ""
+  },
+  {
+    "Date": "10-Jul-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-991",
+    "Debit": "8071.00",
+    "Credit": ""
+  },
+  {
+    "Date": "22-Jul-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-1122",
+    "Debit": "6971.00",
+    "Credit": ""
+  },
+  {
+    "Date": "09-Aug-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-1322",
+    "Debit": "807.00",
+    "Credit": ""
+  },
+  {
+    "Date": "13-Aug-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-1366",
+    "Debit": "9294.00",
+    "Credit": ""
+  },
+  {
+    "Date": "14-Aug-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-1388",
+    "Debit": "37874.00",
+    "Credit": ""
+  },
+  {
+    "Date": "26-Aug-25",
+    "Particulars": "By",
+    "": "HDFC Bank Ltd. 09982000000501",
+    "Vch Type": "Receipt",
+    "Vch No.": "883",
+    "Debit": "",
+    "Credit": "101954.00"
+  },
+  {
+    "Date": "03-Sep-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-1598",
+    "Debit": "212.00",
+    "Credit": ""
+  },
+  {
+    "Date": "22-Sep-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-1821",
+    "Debit": "6443.00",
+    "Credit": ""
+  },
+  {
+    "Date": "27-Sep-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-1882",
+    "Debit": "92993.00",
+    "Credit": ""
+  },
+  {
+    "Date": "01-Oct-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-1916",
+    "Debit": "53185.00",
+    "Credit": ""
+  },
+  {
+    "Date": "08-Oct-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-1994",
+    "Debit": "69660.00",
+    "Credit": ""
+  },
+  {
+    "Date": "09-Oct-25",
+    "Particulars": "By",
+    "": "HDFC Bank Ltd. 09982000000501",
+    "Vch Type": "Receipt",
+    "Vch No.": "1173",
+    "Debit": "",
+    "Credit": "48187.00"
+  },
+  {
+    "Date": "12-Oct-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-2054",
+    "Debit": "850.00",
+    "Credit": ""
+  },
+  {
+    "Date": "14-Oct-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-2070",
+    "Debit": "7009.00",
+    "Credit": ""
+  },
+  {
+    "Date": "18-Oct-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-2100",
+    "Debit": "4525.00",
+    "Credit": ""
+  },
+  {
+    "Date": "31-Oct-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-2200",
+    "Debit": "1510.00",
+    "Credit": ""
+  },
+  {
+    "Date": "01-Nov-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-2213",
+    "Debit": "11953.00",
+    "Credit": ""
+  },
+  {
+    "Date": "04-Nov-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-2250",
+    "Debit": "23712.00",
+    "Credit": ""
+  },
+  {
+    "Date": "06-Nov-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-2264",
+    "Debit": "2950.00",
+    "Credit": ""
+  },
+  {
+    "Date": "12-Nov-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-2314",
+    "Debit": "28827.00",
+    "Credit": ""
+  },
+  {
+    "Date": "18-Nov-25",
+    "Particulars": "To",
+    "": "Sales GST",
+    "Vch Type": "Sales",
+    "Vch No.": "SE-2374",
+    "Debit": "1546.00",
+    "Credit": ""
+  }
 ]
