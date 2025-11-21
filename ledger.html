@@ -5,33 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 15px;
-        }
-
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 20px; 
-        }
-        th, td { 
-            border: 1px solid #000; 
-            padding: 10px; 
-            text-align: left; 
-        }
-
-        /* Responsive */
+        body { font-family: Arial, sans-serif; padding: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #000; padding: 10px; text-align: left; }
         @media (max-width: 600px) {
-            th, td {
-                padding: 6px;
-                font-size: 14px;
-            }
+            th, td { padding: 6px; font-size: 14px; }
         }
-
-        .right {
-            text-align: right;
-        }
+        .right { text-align: right; }
     </style>
 </head>
 <body>
@@ -51,7 +31,6 @@
 </table>
 
 <script>
-
 // ⚡ GET LOGGED USER ID
 const userId = localStorage.getItem("loggedUser");
 
@@ -60,62 +39,88 @@ if (!userId) {
     window.location.href = "login.html";
 }
 
-// Update title
 document.getElementById("partyTitle").innerText = userId.toUpperCase() + " Ledger";
 
-// JSON path becomes bill/userid/userid.json
-const jsonPath = `bill/${userId}/${userId}.json`;
+// XML path
+const xmlpath = `bill/${userId}/${userId}.xml`;
 
-fetch(jsonPath)
-    .then(res => res.json())
-    .then(data => {
+// Convert XML → Array
+async function loadLedgerXML(xmlText) {
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(xmlText, "text/xml");
 
-        // 🔄 Convert Tally fields → Your required fields
-        const convertedData = data.map(item => ({
-            date: item["Date"] || "",
-            type: item["Vch Type"] || item["Particulars"] || "",
-            no: item["Vch No."] || "",
-            debit: item["Debit"] || "",
-            credit: item["Credit"] || "",
-            download: "" // Tally does not give files
-        }));
+    const dates = [...xml.getElementsByTagName("DSPVCHDATE")];
+    const accounts = [...xml.getElementsByTagName("DSPVCHLEDACCOUNT")];
+    const types = [...xml.getElementsByTagName("DSPVCHTYPE")];
+    const drs = [...xml.getElementsByTagName("DSPVCHDRAMT")];
+    const crs = [...xml.getElementsByTagName("DSPVCHCRAMT")];
+    const nos = [...xml.getElementsByTagName("DSPEXPLVCHNUMBER")];
 
-        const table = document.getElementById("invoiceTable");
-        let balance = 0;
+    let result = [];
 
-        convertedData.forEach(inv => {
-            let debit = Number(inv.debit) || 0;
-            let credit = Number(inv.credit) || 0;
+    for (let i = 0; i < dates.length; i++) {
+        let noText = nos[i]?.textContent || "";
+        let invoiceNo = noText.replace("(No. :", "").replace(")", "").trim();
 
-            balance += debit - credit;
-
-            let row = `
-                <tr>
-                    <td>${inv.date}</td>
-                    <td>${inv.type}</td>
-                    <td>${inv.no}</td>
-                    <td class="right">${debit ? "₹" + debit : ""}</td>
-                    <td class="right">${credit ? "₹" + credit : ""}</td>
-                    <td class="right">₹${balance.toFixed(2)}</td>
-                    <td></td>
-                </tr>
-            `;
-
-            table.innerHTML += row;
+        result.push({
+            date: dates[i]?.textContent || "",
+            type: types[i]?.textContent || "",
+            debit: (drs[i]?.textContent || "").replace("-", ""),
+            credit: crs[i]?.textContent || "",
+            no: invoiceNo
         });
+    }
+    return result;
+}
 
-        // Closing balance row
-        table.innerHTML += `
+// Build table
+function populateLedgerTable(data) {
+    const table = document.getElementById("invoiceTable");
+    let balance = 0;
+
+    data.forEach(inv => {
+        let debit = Number(inv.debit) || 0;
+        let credit = Number(inv.credit) || 0;
+
+        balance += debit - credit;
+
+        let row = `
             <tr>
-                <th colspan="5" class="right">Closing Balance</th>
-                <th class="right">₹${balance.toFixed(2)}</th>
-                <th></th>
+                <td>${inv.date}</td>
+                <td>${inv.type}</td>
+                <td>${inv.no}</td>
+                <td class="right">${debit ? "₹" + debit : ""}</td>
+                <td class="right">${credit ? "₹" + credit : ""}</td>
+                <td class="right">₹${balance.toFixed(2)}</td>
+                <td><button onclick="downloadInvoice('${inv.no}')">Download</button></td>
             </tr>
         `;
-    })
-    .catch(err => {
-        document.body.innerHTML += "<p style='color:red;'>Error loading ledger data.</p>";
+
+        table.innerHTML += row;
     });
+
+    table.innerHTML += `
+        <tr>
+            <th colspan="5" class="right">Closing Balance</th>
+            <th class="right">₹${balance.toFixed(2)}</th>
+            <th></th>
+        </tr>
+    `;
+}
+
+// Load XML → Table
+fetch(xmlpath)
+    .then(res => res.text())
+    .then(xmlText => loadLedgerXML(xmlText))
+    .then(ledger => populateLedgerTable(ledger))
+    .catch(err => {
+        document.body.innerHTML += "<p style='color:red;'>Error loading ledger XML.</p>";
+    });
+
+// Placeholder for PDF extraction
+function downloadInvoice(no) {
+    alert("Download PDF for invoice: " + no);
+}
 
 </script>
 
