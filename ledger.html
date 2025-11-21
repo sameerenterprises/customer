@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Ledger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 15px;
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+        th, td { 
+            border: 1px solid #000; 
+            padding: 10px; 
+            text-align: left; 
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            th, td {
+                padding: 6px;
+                font-size: 14px;
+            }
+        }
+
+        .right {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<h2 id="partyTitle"></h2>
+
+<table id="invoiceTable">
+    <tr>
+        <th>Date</th>
+        <th>Type</th>
+        <th>No</th>
+        <th>Debit</th>
+        <th>Credit</th>
+        <th>Balance</th>
+        <th>Download</th>
+    </tr>
+</table>
+
+<script>
+
+// ⚡ GET LOGGED USER ID
+const userId = localStorage.getItem("loggedUser");
+
+if (!userId) {
+    alert("No user logged in!");
+    window.location.href = "login.html";
+}
+
+// Update title
+document.getElementById("partyTitle").innerText = userId.toUpperCase() + " Ledger";
+
+// JSON path becomes bill/userid/userid.json
+const jsonPath = `bill/${userId}/${userId}.json`;
+
+fetch(jsonPath)
+    .then(res => res.json())
+    .then(data => {
+        const table = document.getElementById("invoiceTable");
+
+        let balance = 0;
+
+        data.forEach(inv => {
+            let debit = Number(inv.debit) || 0;
+            let credit = Number(inv.credit) || 0;
+
+            // Running balance
+            balance += debit - credit;
+
+            // File download path updated
+            let downloadBtn = inv.download 
+                ? `<a href="bill/${userId}/${inv.download}" download>Download</a>`
+                : "";
+
+            let row = `
+                <tr>
+                    <td>${inv.date}</td>
+                    <td>${inv.type}</td>
+                    <td>${inv.no || ""}</td>
+                    <td class="right">${debit ? "₹" + debit : ""}</td>
+                    <td class="right">${credit ? "₹" + credit : ""}</td>
+                    <td class="right">₹${balance}</td>
+                    <td>${downloadBtn}</td>
+                </tr>
+            `;
+            table.innerHTML += row;
+        });
+
+        // Closing balance row
+        table.innerHTML += `
+            <tr>
+                <th colspan="5" class="right">Closing Balance</th>
+                <th class="right">₹${balance}</th>
+                <th></th>
+            </tr>
+        `;
+    })
+    .catch(err => {
+        document.body.innerHTML += "<p style='color:red;'>Error loading ledger data.</p>";
+    });
+
+</script>
+
+</body>
+</html>
