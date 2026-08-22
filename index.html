@@ -1,217 +1,2000 @@
+# Sameer Trade Solution — Animated Product Showcase Website
+
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sameer Enterprises</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Full viewport height */
-        }
-        .container {
-            padding: 20px;
-            display: flex;
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
-        }
-        h1 {
-            font-size: 28px;
-            color: #333;
-            margin: 20px 0;
-        }
-        .button {
-            font-size: 18px;
-            padding: 10px 20px;
-            margin: 10px 0; /* Vertical margin to separate buttons */
-            cursor: pointer;
-            color: white;
-            background-color: #0066cc;
-            border: none;
-            border-radius: 5px;
-            width: 200px; /* Fixed width for consistent button size */
-            text-align: center;
-        }
-        .button:hover {
-            background-color: #005bb5;
-        }
-        .hidden {
-            display: none;
-        }
-        .content {
-            padding: 20px;
-            background-color: #fff;
-            margin: 20px auto;
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            position: relative;
-            padding-bottom: 80px; /* Ensure space for the back button */
-        }
-        .content h1 {
-            text-decoration: underline;
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 15px;
-        }
-        .content p {
-            font-size: 18px;
-            color: #555;
-            margin: 5px 0;
-        }
-        .button-link {
-            font-size: 18px;
-            padding: 10px 20px;
-            margin: 10px 0; /* Vertical margin to separate buttons */
-            cursor: pointer;
-            color: white;
-            background-color: #0066cc;
-            border: none;
-            border-radius: 5px;
-            width: 200px; /* Fixed width for consistent button size */
-            text-align: center;
-            text-decoration: none;
-            display: block; /* Make buttons full-width and stack vertically */
-        }
-        .button-link:hover {
-            background-color: #005bb5;
-        }
-        .back-button {
-            font-size: 18px;
-            background-color: #ff6600;
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-        }
-        .back-button:hover {
-            background-color: #cc5200;
-        }
-        /* Specific styles for centering the Follow Us page */
-        .follow-us-container {
-            text-align: center; /* Center text within the follow-us section */
-        }
-        .follow-us-container .button-link {
-            margin-left: auto; /* Center align the button */
-            margin-right: auto; /* Center align the button */
-        }
-        /* Specific styles for left-aligning the Contacts page */
-        .contacts-container {
-            text-align: left; /* Left-align text within the contacts section */
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 24px;
-            }
-            .button {
-                font-size: 16px;
-                padding: 8px 16px;
-                width: 150px; /* Adjust width for smaller screens */
-            }
-            .content h1 {
-                font-size: 20px;
-            }
-            .content p {
-                font-size: 16px;
-            }
-            .button-link {
-                font-size: 16px;
-                padding: 8px 16px;
-                width: 150px; /* Adjust width for smaller screens */
-            }
-            .back-button {
-                font-size: 16px;
-                padding: 8px 16px;
-            }
-        }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sameer Trade Solution Pvt Ltd</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    background:#030914;
+
+    color:white;
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================================
+   SCREENSAVER
+========================================================= */
+
+#splash{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        110deg,
+        #020711,
+        #07142c,
+        #020711
+    );
+
+    transition:
+    opacity 1s ease,
+    visibility 1s ease;
+}
+
+
+/* Background glow */
+
+.splash-glow{
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(0,130,255,.35),
+        transparent 65%
+    );
+
+    animation:
+    splashGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes splashGlow{
+
+    from{
+        transform:scale(.8);
+        opacity:.5;
+    }
+
+    to{
+        transform:scale(1.3);
+        opacity:1;
+    }
+}
+
+
+/* Splash content */
+
+.splash-content{
+
+    position:relative;
+
+    width:90%;
+
+    max-width:1000px;
+
+    text-align:center;
+
+    z-index:2;
+
+    animation:
+    splashEnter 1.3s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes splashEnter{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(40px)
+        scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        translateY(0)
+        scale(1);
+    }
+}
+
+
+/* STS logo */
+
+.splash-logo{
+
+    width:110px;
+    height:110px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:28px;
+
+    font-size:42px;
+
+    font-weight:900;
+
+    letter-spacing:-3px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #007bff,
+        #5f2cff
+    );
+
+    box-shadow:
+    0 0 50px
+    rgba(0,120,255,.55);
+
+    animation:
+    logoPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes logoPulse{
+
+    0%,100%{
+        box-shadow:
+        0 0 25px
+        rgba(0,120,255,.35);
+    }
+
+    50%{
+        box-shadow:
+        0 0 65px
+        rgba(0,120,255,.8);
+    }
+}
+
+
+/* Splash title */
+
+.splash-small{
+
+    margin-top:30px;
+
+    font-size:14px;
+
+    letter-spacing:7px;
+
+    color:#73baff;
+}
+
+.splash-title{
+
+    margin-top:12px;
+
+    font-size:
+    clamp(30px,6vw,68px);
+
+    font-weight:800;
+
+    line-height:1.05;
+
+    background:
+    linear-gradient(
+        90deg,
+        #fff,
+        #66b7ff,
+        #fff
+    );
+
+    background-size:200% auto;
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+
+    animation:
+    shine 4s linear infinite;
+}
+
+@keyframes shine{
+
+    from{
+        background-position:0%;
+    }
+
+    to{
+        background-position:200%;
+    }
+}
+
+
+.splash-subtitle{
+
+    margin-top:20px;
+
+    font-size:
+    clamp(14px,2vw,20px);
+
+    color:
+    rgba(255,255,255,.65);
+
+    letter-spacing:1px;
+}
+
+
+/* Product words */
+
+.product-line{
+
+    margin-top:35px;
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+.product-line span{
+
+    padding:
+    9px 17px;
+
+    border:
+    1px solid
+    rgba(100,180,255,.3);
+
+    border-radius:50px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    color:#b8ddff;
+
+    font-size:13px;
+
+    animation:
+    productAppear .8s both;
+}
+
+.product-line span:nth-child(1){
+    animation-delay:.5s;
+}
+
+.product-line span:nth-child(2){
+    animation-delay:.8s;
+}
+
+.product-line span:nth-child(3){
+    animation-delay:1.1s;
+}
+
+.product-line span:nth-child(4){
+    animation-delay:1.4s;
+}
+
+@keyframes productAppear{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        translateY(0);
+    }
+}
+
+
+/* Loading */
+
+.loading{
+
+    width:280px;
+
+    margin:
+    50px auto 0;
+}
+
+.loading-text{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:8px;
+
+    color:
+    rgba(255,255,255,.5);
+
+    font-size:12px;
+}
+
+.loading-bar{
+
+    width:100%;
+
+    height:5px;
+
+    background:
+    rgba(255,255,255,.1);
+
+    border-radius:10px;
+
+    overflow:hidden;
+}
+
+.loading-progress{
+
+    height:100%;
+
+    width:0;
+
+    border-radius:10px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #0066ff,
+        #45c4ff
+    );
+
+    box-shadow:
+    0 0 15px
+    #168cff;
+
+    animation:
+    loading 3.2s
+    cubic-bezier(.4,0,.2,1)
+    forwards;
+}
+
+@keyframes loading{
+
+    to{
+        width:100%;
+    }
+}
+
+
+/* =========================================================
+   MAIN WEBSITE
+========================================================= */
+
+#main{
+
+    opacity:0;
+
+    transition:
+    opacity 1s ease;
+
+    min-height:100vh;
+
+    background:
+
+    radial-gradient(
+        circle at 10% 10%,
+        rgba(0,100,255,.13),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 90% 70%,
+        rgba(60,0,255,.12),
+        transparent 30%
+    ),
+
+    #030914;
+}
+
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+.header{
+
+    width:100%;
+
+    padding:
+    22px 5%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+    background:
+    rgba(3,9,20,.7);
+
+    backdrop-filter:
+    blur(20px);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+}
+
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+.brand-logo{
+
+    width:48px;
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #007bff,
+        #6333ff
+    );
+
+    font-weight:900;
+
+    font-size:18px;
+
+    box-shadow:
+    0 0 20px
+    rgba(0,110,255,.3);
+}
+
+.brand-text{
+
+    font-size:15px;
+
+    font-weight:700;
+}
+
+.brand-sub{
+
+    font-size:10px;
+
+    color:
+    rgba(255,255,255,.45);
+
+    margin-top:2px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:
+    70px 5% 40px;
+
+    display:grid;
+
+    grid-template-columns:
+    1.1fr .9fr;
+
+    gap:50px;
+
+    align-items:center;
+}
+
+
+.hero-label{
+
+    color:#53b4ff;
+
+    font-size:13px;
+
+    letter-spacing:4px;
+
+    font-weight:700;
+}
+
+.hero h1{
+
+    margin-top:15px;
+
+    font-size:
+    clamp(38px,5vw,68px);
+
+    line-height:1.05;
+}
+
+.hero h1 span{
+
+    background:
+    linear-gradient(
+        90deg,
+        #fff,
+        #50b4ff
+    );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+}
+
+.hero p{
+
+    margin-top:20px;
+
+    color:
+    rgba(255,255,255,.55);
+
+    font-size:16px;
+
+    line-height:1.7;
+
+    max-width:600px;
+}
+
+
+/* Product visual */
+
+.product-showcase{
+
+    position:relative;
+
+    min-height:300px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:
+    1px solid
+    rgba(80,170,255,.2);
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(30,90,150,.18),
+        rgba(20,20,60,.25)
+    );
+
+    overflow:hidden;
+
+    box-shadow:
+    inset 0 0 60px
+    rgba(0,100,255,.08);
+}
+
+.product-board{
+
+    width:230px;
+    height:145px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f7f7f7,
+        #d6dce2
+    );
+
+    border-radius:5px;
+
+    transform:
+    perspective(500px)
+    rotateX(55deg)
+    rotateZ(-20deg);
+
+    box-shadow:
+    20px 25px 35px
+    rgba(0,0,0,.5);
+
+    position:relative;
+
+    animation:
+    boardFloat 4s ease-in-out infinite;
+}
+
+@keyframes boardFloat{
+
+    0%,100%{
+        transform:
+        perspective(500px)
+        rotateX(55deg)
+        rotateZ(-20deg)
+        translateY(0);
+    }
+
+    50%{
+        transform:
+        perspective(500px)
+        rotateX(55deg)
+        rotateZ(-20deg)
+        translateY(-15px);
+    }
+}
+
+.product-board::after{
+
+    content:"GYPROC";
+
+    position:absolute;
+
+    left:30px;
+
+    top:50px;
+
+    font-size:22px;
+
+    font-weight:800;
+
+    color:#1681cf;
+
+    transform:rotate(20deg);
+}
+
+.board-side{
+
+    position:absolute;
+
+    width:230px;
+
+    height:18px;
+
+    bottom:-18px;
+
+    background:#9aa3ab;
+}
+
+
+/* Floating labels */
+
+.float-label{
+
+    position:absolute;
+
+    padding:
+    10px 15px;
+
+    border:
+    1px solid
+    rgba(90,180,255,.3);
+
+    border-radius:12px;
+
+    background:
+    rgba(3,15,35,.8);
+
+    backdrop-filter:blur(10px);
+
+    font-size:12px;
+
+    color:#b8dcff;
+
+    animation:
+    labelFloat 4s ease-in-out infinite;
+}
+
+.label1{
+    top:30px;
+    left:30px;
+}
+
+.label2{
+    right:25px;
+    bottom:40px;
+
+    animation-delay:1s;
+}
+
+@keyframes labelFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+
+/* =========================================================
+   NAV BUTTONS
+========================================================= */
+
+.navigation{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:
+    20px 5% 45px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(6,1fr);
+
+    gap:12px;
+}
+
+.nav-button{
+
+    min-height:75px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    border:
+    1px solid
+    rgba(80,160,255,.2);
+
+    border-radius:17px;
+
+    background:
+    rgba(255,255,255,.045);
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    transition:.3s ease;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.nav-icon{
+
+    font-size:22px;
+}
+
+.nav-button:hover{
+
+    transform:
+    translateY(-6px);
+
+    border-color:
+    rgba(70,180,255,.7);
+
+    background:
+    rgba(30,120,220,.13);
+
+    box-shadow:
+    0 15px 35px
+    rgba(0,100,255,.15);
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:
+    35px 5%;
+}
+
+.section-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+.section-title::before,
+.section-title::after{
+
+    content:"";
+
+    height:1px;
+
+    flex:1;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(70,170,255,.4)
+    );
+}
+
+.section-title h2{
+
+    font-size:20px;
+
+    letter-spacing:2px;
+}
+
+
+/* =========================================================
+   PRODUCT CARDS
+========================================================= */
+
+.products{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:15px;
+}
+
+.product-card{
+
+    min-height:170px;
+
+    padding:20px;
+
+    border:
+    1px solid
+    rgba(255,255,255,.1);
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.045);
+
+    transition:.4s ease;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.product-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:100px;
+    height:100px;
+
+    right:-40px;
+    top:-40px;
+
+    border-radius:50%;
+
+    background:
+    rgba(0,120,255,.15);
+
+    filter:blur(20px);
+}
+
+.product-card:hover{
+
+    transform:
+    translateY(-8px);
+
+    border-color:
+    rgba(70,180,255,.5);
+
+    box-shadow:
+    0 20px 40px
+    rgba(0,60,150,.18);
+}
+
+.product-icon{
+
+    font-size:35px;
+
+    margin-bottom:15px;
+}
+
+.product-card h3{
+
+    font-size:15px;
+
+    margin-bottom:8px;
+}
+
+.product-card p{
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    color:
+    rgba(255,255,255,.45);
+}
+
+
+/* =========================================================
+   TRUST BAR
+========================================================= */
+
+.trust{
+
+    max-width:1150px;
+
+    margin:30px auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+    padding:
+    0 5%;
+}
+
+.trust-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:20px;
+
+    border-radius:17px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid
+    rgba(255,255,255,.07);
+}
+
+.trust-icon{
+
+    font-size:25px;
+}
+
+.trust-title{
+
+    font-size:13px;
+
+    font-weight:700;
+}
+
+.trust-text{
+
+    margin-top:3px;
+
+    font-size:10px;
+
+    color:
+    rgba(255,255,255,.4);
+}
+
+
+/* =========================================================
+   CONTACTS
+========================================================= */
+
+.contacts{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+}
+
+.contact-card{
+
+    padding:18px;
+
+    border-radius:17px;
+
+    background:
+    rgba(255,255,255,.045);
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
+    transition:.3s ease;
+}
+
+.contact-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:
+    rgba(70,170,255,.4);
+}
+
+.contact-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:10px;
+}
+
+.contact-icon{
+
+    width:35px;
+    height:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:
+    rgba(0,120,255,.15);
+}
+
+.contact-title{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#b8dcff;
+}
+
+.contact-name{
+
+    font-size:13px;
+
+    margin-bottom:5px;
+}
+
+.contact-link{
+
+    color:
+    rgba(255,255,255,.65);
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    display:block;
+
+    margin-top:4px;
+}
+
+.contact-link:hover{
+
+    color:#55b5ff;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    margin-top:50px;
+
+    padding:25px;
+
+    text-align:center;
+
+    border-top:
+    1px solid
+    rgba(255,255,255,.07);
+
+    color:
+    rgba(255,255,255,.35);
+
+    font-size:11px;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .hero{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+    }
+
+    .hero p{
+
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .navigation{
+
+        grid-template-columns:
+        repeat(3,1fr);
+    }
+
+    .products{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .contacts{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .trust{
+
+        grid-template-columns:1fr;
+    }
+}
+
+
+@media(max-width:600px){
+
+    .header{
+
+        padding:15px 5%;
+    }
+
+    .brand-text{
+
+        font-size:13px;
+    }
+
+    .brand-sub{
+
+        font-size:8px;
+    }
+
+    .hero{
+
+        padding-top:45px;
+    }
+
+    .product-showcase{
+
+        min-height:240px;
+    }
+
+    .navigation{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+        padding-bottom:25px;
+    }
+
+    .products{
+
+        grid-template-columns:1fr;
+    }
+
+    .contacts{
+
+        grid-template-columns:1fr;
+    }
+
+    .section{
+
+        padding-top:25px;
+    }
+
+    .splash-logo{
+
+        width:85px;
+        height:85px;
+
+        font-size:32px;
+    }
+
+    .product-line{
+
+        gap:7px;
+    }
+
+    .product-line span{
+
+        font-size:10px;
+
+        padding:7px 11px;
+    }
+
+    .loading{
+
+        width:220px;
+    }
+}
+
+</style>
+
 </head>
+
+
 <body>
-    <div id="welcome" class="container">
-        <!-- Bill Fetch button -->
-        <a href="bill.html">
-            <button class="button">Parties Bill</button>
-        </a>
-        
-        <button class="button" onclick="showContent('contacts')">Contacts</button>
 
-        <!-- New Price List button -->
-        <a href="pricelist.html">
-            <button class="button">Price List</button>
-        </a>
 
-        <!-- Location button -->
-        <a href="https://maps.app.goo.gl/qK3y1cAVLmw8QsyFA" target="_blank">
-            <button class="button">Location</button>
-        </a>
+<!-- =====================================================
+     CINEMATIC SPLASH SCREEN
+===================================================== -->
 
-        <button class="button" onclick="showContent('follow-us')">Follow Us</button>
-        <a href="https://g.page/r/CcPL1YPMjylGEBM/review" target="_blank">
-            <button class="button">Review Us</button>
-        </a>
-    </div>
+<div id="splash">
 
-    <div id="content" class="hidden container">
-        <!-- Contacts Section -->
-        <div id="contacts" class="content hidden contacts-container">
-            <h1>Company Details:</h1>
-            <p>Email: <a href="mailto:salarindiacorp@gmail.com">salarindiacorp@gmail.com</a></p>
-            <p>Number: <a href="tel:7045692083">7045692083</a></p>
+    <div class="splash-glow"></div>
 
-            <h1>Bill Price Enquiry & GST Order Placement:</h1>
-            <p>Name: Lateef Choudhary</p>
-            <p>Number: <a href="tel:9930306247">9930306247</a></p>
+    <div class="splash-content">
 
-            <h1>Account / Invoice / MTC Related Queries:</h1>
-            <p>Name: Neha Singh</p>
-            <p>Number: <a href="tel:8169248105">8169248105</a></p>
-
-            <h1>Retail Price Enquiry & Retail Order Placement:</h1>
-            <p>Name: Ram Jais</p>
-            <p>Number: <a href="tel:9022405221">9022405221</a></p>
-
-            <p>Name: Sangram Ingale</p>
-            <p>Number: <a href="tel:9833148813">9833148813</a></p>
-
-            <button class="button back-button" onclick="showWelcome()">Back</button>
+        <div class="splash-logo">
+            STS
         </div>
 
-        <!-- Follow Us Section -->
-        <div id="follow-us" class="content hidden follow-us-container">
-            <h1>Follow Us:</h1>
-            <p>Stay connected with us through our social media channels:</p>
-            <!-- Centering buttons with auto margin -->
-            <a href="https://www.instagram.com/sameertradesolution/" target="_blank" class="button-link">Instagram</a>
-            <a href="https://www.linkedin.com/company/sameer-enterprisess" target="_blank" class="button-link">LinkedIn</a>
-
-            <button class="button back-button" onclick="showWelcome()">Back</button>
+        <div class="splash-small">
+            SAMEER TRADE SOLUTION
         </div>
+
+        <div class="splash-title">
+            BUILDING STRONGER SPACES
+        </div>
+
+        <div class="splash-subtitle">
+            Quality Gyproc Solutions for Ceilings,
+            Partitions & Interiors
+        </div>
+
+
+        <div class="product-line">
+
+            <span>GYPROC BOARDS</span>
+
+            <span>GI CHANNELS</span>
+
+            <span>CEILING SYSTEMS</span>
+
+            <span>JOINTING & FINISHING</span>
+
+        </div>
+
+
+        <div class="loading">
+
+            <div class="loading-text">
+
+                <span>
+                    Preparing your experience
+                </span>
+
+                <span>
+                    STS
+                </span>
+
+            </div>
+
+            <div class="loading-bar">
+
+                <div class="loading-progress"></div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <script>
-        function showContent(section) {
-            document.getElementById('welcome').classList.add('hidden');
-            document.getElementById('content').classList.remove('hidden');
-            document.getElementById('contacts').classList.add('hidden');
-            document.getElementById('follow-us').classList.add('hidden');
-            document.getElementById(section).classList.remove('hidden');
-        }
+</div>
 
-        function showWelcome() {
-            document.getElementById('welcome').classList.remove('hidden');
-            document.getElementById('content').classList.add('hidden');
-            document.getElementById('contacts').classList.add('hidden');
-            document.getElementById('follow-us').classList.add('hidden');
-        }
-    </script>
+
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
+
+<div id="main">
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            STS
+        </div>
+
+        <div>
+
+            <div class="brand-text">
+                Sameer Trade Solution Pvt Ltd
+            </div>
+
+            <div class="brand-sub">
+                GYPROC MATERIAL & INTERIOR SOLUTIONS
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div>
+
+        <div class="hero-label">
+            YOUR TRUSTED MATERIAL PARTNER
+        </div>
+
+        <h1>
+
+            Building
+            <span>
+                Better Spaces.
+            </span>
+
+        </h1>
+
+        <p>
+
+            Quality Gyproc materials for ceilings,
+            drywall partitions, walls and interior
+            construction — supplied with reliability
+            and professional service.
+
+        </p>
+
+    </div>
+
+
+    <div class="product-showcase">
+
+        <div class="float-label label1">
+            ✓ Quality Materials
+        </div>
+
+        <div class="float-label label2">
+            ✓ Trusted Supply
+        </div>
+
+        <div class="product-board">
+
+            <div class="board-side"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NAVIGATION -->
+
+<div class="navigation">
+
+
+    <a
+        href="bill.html"
+        class="nav-button"
+    >
+
+        <span class="nav-icon">
+            🧾
+        </span>
+
+        Parties Bill
+
+    </a>
+
+
+    <a
+        href="#contacts"
+        class="nav-button"
+    >
+
+        <span class="nav-icon">
+            📞
+        </span>
+
+        Contacts
+
+    </a>
+
+
+    <a
+        href="pricelist.html"
+        class="nav-button"
+    >
+
+        <span class="nav-icon">
+            💰
+        </span>
+
+        Price List
+
+    </a>
+
+
+    <a
+        href="https://maps.app.goo.gl/qK3y1cAVLmw8QsyFA"
+        target="_blank"
+        class="nav-button"
+    >
+
+        <span class="nav-icon">
+            📍
+        </span>
+
+        Location
+
+    </a>
+
+
+    <a
+        href="https://www.instagram.com/sameertradesolution/"
+        target="_blank"
+        class="nav-button"
+    >
+
+        <span class="nav-icon">
+            📸
+        </span>
+
+        Follow Us
+
+    </a>
+
+
+    <a
+        href="https://g.page/r/CcPL1YPMjylGEBM/review"
+        target="_blank"
+        class="nav-button"
+    >
+
+        <span class="nav-icon">
+            ⭐
+        </span>
+
+        Review Us
+
+    </a>
+
+</div>
+
+
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            WHAT WE SUPPLY
+        </h2>
+
+    </div>
+
+
+    <div class="products">
+
+
+        <div class="product-card">
+
+            <div class="product-icon">
+                ▤
+            </div>
+
+            <h3>
+                Gyproc Boards
+            </h3>
+
+            <p>
+                Standard, Moisture Resistant,
+                Fireline, SoundBloc and other
+                gypsum boards.
+            </p>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-icon">
+                ═
+            </div>
+
+            <h3>
+                GI Channels
+            </h3>
+
+            <p>
+                Studs, runners, channels,
+                furring sections and
+                partition profiles.
+            </p>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-icon">
+                ▦
+            </div>
+
+            <h3>
+                Ceiling Systems
+            </h3>
+
+            <p>
+                Ceiling grids, suspension
+                systems, tiles and
+                accessories.
+            </p>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-icon">
+                🪣
+            </div>
+
+            <h3>
+                Jointing & Finishing
+            </h3>
+
+            <p>
+                Jointing compound, fibre tape,
+                beads, putty and finishing
+                materials.
+            </p>
+
+        </div>
+
+
+        <div class="product-card">
+
+            <div class="product-icon">
+                🔩
+            </div>
+
+            <h3>
+                Screws & Accessories
+            </h3>
+
+            <p>
+                Drywall screws, anchors,
+                fasteners, clips and
+                installation accessories.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- TRUST -->
+
+<div class="trust">
+
+
+    <div class="trust-card">
+
+        <div class="trust-icon">
+            🛡️
+        </div>
+
+        <div>
+
+            <div class="trust-title">
+                QUALITY PRODUCTS
+            </div>
+
+            <div class="trust-text">
+                Materials you can trust
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="trust-card">
+
+        <div class="trust-icon">
+            🚚
+        </div>
+
+        <div>
+
+            <div class="trust-title">
+                RELIABLE SUPPLY
+            </div>
+
+            <div class="trust-text">
+                Timely material availability
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="trust-card">
+
+        <div class="trust-icon">
+            👥
+        </div>
+
+        <div>
+
+            <div class="trust-title">
+                EXPERT SUPPORT
+            </div>
+
+            <div class="trust-text">
+                We are here to help
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     CONTACTS
+===================================================== -->
+
+<section
+    class="section"
+    id="contacts"
+>
+
+    <div class="section-title">
+
+        <h2>
+            CONTACTS
+        </h2>
+
+    </div>
+
+
+    <div class="contacts">
+
+
+        <!-- Company -->
+
+        <div class="contact-card">
+
+            <div class="contact-top">
+
+                <div class="contact-icon">
+                    🏢
+                </div>
+
+                <div class="contact-title">
+                    COMPANY DETAILS
+                </div>
+
+            </div>
+
+            <div class="contact-name">
+                Sameer Trade Solution Pvt Ltd
+            </div>
+
+            <a
+                class="contact-link"
+                href="mailto:salarindiacorp@gmail.com"
+            >
+                ✉ salarindiacorp@gmail.com
+            </a>
+
+            <a
+                class="contact-link"
+                href="tel:7045692083"
+            >
+                ☎ 7045692083
+            </a>
+
+        </div>
+
+
+        <!-- Lateef -->
+
+        <div class="contact-card">
+
+            <div class="contact-top">
+
+                <div class="contact-icon">
+                    👤
+                </div>
+
+                <div class="contact-title">
+                    BILL / GST ORDERS
+                </div>
+
+            </div>
+
+            <div class="contact-name">
+                Lateef Choudhary
+            </div>
+
+            <a
+                class="contact-link"
+                href="tel:9930306247"
+            >
+                ☎ 9930306247
+            </a>
+
+        </div>
+
+
+        <!-- Neha -->
+
+        <div class="contact-card">
+
+            <div class="contact-top">
+
+                <div class="contact-icon">
+                    👤
+                </div>
+
+                <div class="contact-title">
+                    ACCOUNTS / INVOICE / MTC
+                </div>
+
+            </div>
+
+            <div class="contact-name">
+                Neha Singh
+            </div>
+
+            <a
+                class="contact-link"
+                href="tel:8169248105"
+            >
+                ☎ 8169248105
+            </a>
+
+        </div>
+
+
+        <!-- Ram -->
+
+        <div class="contact-card">
+
+            <div class="contact-top">
+
+                <div class="contact-icon">
+                    👤
+                </div>
+
+                <div class="contact-title">
+                    RETAIL ORDERS
+                </div>
+
+            </div>
+
+            <div class="contact-name">
+                Ram Jais
+            </div>
+
+            <a
+                class="contact-link"
+                href="tel:9022405221"
+            >
+                ☎ 9022405221
+            </a>
+
+        </div>
+
+
+        <!-- Sangram -->
+
+        <div class="contact-card">
+
+            <div class="contact-top">
+
+                <div class="contact-icon">
+                    👤
+                </div>
+
+                <div class="contact-title">
+                    RETAIL ORDERS
+                </div>
+
+            </div>
+
+            <div class="contact-name">
+                Sangram Ingale
+            </div>
+
+            <a
+                class="contact-link"
+                href="tel:9833148813"
+            >
+                ☎ 9833148813
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    🛡️ Sameer Trade Solution Pvt Ltd
+
+    &nbsp; | &nbsp;
+
+    Building Stronger Relationships
+
+</footer>
+
+
+</div>
+
+
+<!-- =====================================================
+     SCRIPT
+===================================================== -->
+
+<script>
+
+/* =========================================================
+   SPLASH SCREEN
+========================================================= */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        setTimeout(
+            function(){
+
+                const splash =
+                    document.getElementById("splash");
+
+                const main =
+                    document.getElementById("main");
+
+
+                splash.style.opacity = "0";
+
+                splash.style.visibility =
+                    "hidden";
+
+
+                main.style.opacity = "1";
+
+
+            },
+            3800
+        );
+
+    }
+);
+
+</script>
+
+
 </body>
+
 </html>
+```
